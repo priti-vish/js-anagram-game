@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="questionrow" class="questionletters">
+    <button type="button">S</button>
+    <button type="button">I</button>
+    <button type="button">L</button>
+    <button type="button">E</button>
+    <button type="button">N</button>
+    <button type="button">T</button>
+  </div>
+
+  <div id="answerrow" class="answerletters">
+    <button type="button"></button>
+    <button type="button"></button>
+    <button type="button"></button>
+    <button type="button"></button>
+    <button type="button"></button>
+    <button type="button"></button>
+  </div>
+
+  <script>
+    let questionrow = document
+      .getElementById("questionrow")
+      .getElementsByTagName("button");
+    let answerrow = document
+      .getElementById("answerrow")
+      .getElementsByTagName("button");
+
+    for (const ansbutton of answerrow) {
+      ansbutton.addEventListener("click", () => {
+        if (ansbutton.textContent !== "") {
+          ansbutton.placing.disabled = false;
+          ansbutton.textContent = "";
+          ansbutton.placing = null;
+          checkResult()
+        }
+      });
+    }
+    for (const qbutton of questionrow) {
+      qbutton.addEventListener("click", () => {
+        for (const ansbutton of answerrow) {
+          if (ansbutton.textContent == "") {
+            ansbutton.textContent = qbutton.textContent;
+            ansbutton.placing = qbutton;
+            qbutton.disabled = true;
+            checkResult()
+            break;
+          }
+        }
+      });
+    }
+
+    const checkResult = () => {
+      let result = [];
+      for (const ansbutton of answerrow) {
+        if (ansbutton.textContent != "") {
+          result.push(ansbutton.textContent);
+        }
+      }
+      if (result.length == answerrow.length) {
+        if (result.join("") === "LISTEN") {
+          alert("Your answer is: " + result.join("") + " correct!");
+        }
+
+      }
+    }
+  </script>
+</body>
+
+</html>
