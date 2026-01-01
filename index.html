@@ -66,10 +66,10 @@
         }
       }
       if (result.length == answerrow.length) {
-        if (result.join("") === "LISTEN") {
-          alert("Your answer is: " + result.join("") + " correct!");
+        let guessedAnswer = result.join("");
+        if (guessedAnswer === "LISTEN") {
+          alert("Your answer is: " + guessedAnswer + " correct!");
         }
-
       }
     }
   </script>
